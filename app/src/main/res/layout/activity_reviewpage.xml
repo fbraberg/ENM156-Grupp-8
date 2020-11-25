@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/textKategori"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="96dp"
+        android:text="Välj kategori:"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textKategori">
+
+        <RadioButton
+            android:id="@+id/radioButtonOmdome"
+            android:layout_width="wrap_content"
+            android:layout_height="32dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginLeft="24dp"
+            android:checked="true"
+            android:text="Omdöme"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textKategori" />
+
+        <RadioButton
+            android:id="@+id/radioButtonSkadeanmalan"
+            android:layout_width="wrap_content"
+            android:layout_height="32dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="1dp"
+            android:text="Skadeanmälan"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/radioButtonOmdome" />
+
+        <RadioButton
+            android:id="@+id/radioForslag"
+            android:layout_width="wrap_content"
+            android:layout_height="32dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginLeft="24dp"
+            android:text="Förslag"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/radioButtonSkadeanmalan" />
+
+        <RadioButton
+            android:id="@+id/radioButtonOvrigt"
+            android:layout_width="wrap_content"
+            android:layout_height="32dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginLeft="24dp"
+            android:text="Övrigt"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/radioForslag" />
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/textKommentar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:text="Kommentar:"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup"
+        android:layout_marginLeft="24dp" />
+
+    <EditText
+        android:id="@+id/edit_text"
+        android:layout_width="379dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="8dp"
+        android:gravity="top"
+        android:inputType="text|textMultiLine"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.448"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textKommentar" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textKommentar"
+        app:srcCompat="@mipmap/commandboxthinner" />
+</androidx.constraintlayout.widget.ConstraintLayout>
