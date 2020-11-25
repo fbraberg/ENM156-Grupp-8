@@ -1,4 +1,13 @@
 <resources>
     <string name="app_name">Reviewer</string>
     <string name="title_activity_maps">Map</string>
+    <string name="title_activity_intro">Intro</string>
+    <string name="vasttrafik_contentDescription">Västtrafik logotyp</string>
+    <string name="vasttrafik_reviewer_contentDescription">Reviewer logotyp</string>
+    <string name="about">
+        Med Västtrafiks Reviewer kan du ge betyg åt och rapportera in fel av respektive känd busshållplats i Sverige!
+        \n\nVälj hållplats genom att trycka på en ikon på kartan eller via sökfunktionen.</string>
+    <string name="start">Start</string>
+
+
 </resources>

@@ -29,14 +29,30 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
+        <!-- Start screen -->
         <activity
-            android:name=".MapsActivity"
-            android:label="@string/title_activity_maps">
+            android:name=".IntroSplashActivity"
+            android:label="@string/title_activity_intro"
+            android:theme="@style/NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+
+        <!-- Parent: IntroSplashActivity -->
+        <activity
+            android:name=".IntroAboutActivity"
+            android:label="@string/title_activity_intro"
+            android:theme="@style/NoActionBar">
+        </activity>
+
+        <!-- Parent: IntroAboutActivity -->
+        <activity
+            android:name=".MapsActivity"
+            android:label="@string/title_activity_maps"
+            android:theme="@style/NoActionBar">
         </activity>
     </application>
 
