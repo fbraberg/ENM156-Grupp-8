@@ -9,5 +9,17 @@
         \n\nVälj hållplats genom att trycka på en ikon på kartan eller via sökfunktionen.</string>
     <string name="start">Start</string>
 
+    // used in reviewpage.xml
+    <string name="kategori">Välj kategori:</string>
+    <string name="omdome">Omdöme</string>
+    <string name="Skadeanmalan">Skadeanmälan</string>
+    <string name="Forslag">Förslag</string>
+    <string name="ovrigt">Övrigt</string>
+    <string name="kommentar">Kommentar:</string>
+    <string name="bild">Bild:</string>
+    <string name="obl">(Obligatorisk vid skadeanmälan)</string>
+    <string name="send">Skicka</string>
+
+
 
 </resources>

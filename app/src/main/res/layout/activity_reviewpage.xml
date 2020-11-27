@@ -12,20 +12,21 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginLeft="24dp"
-        android:layout_marginTop="96dp"
-        android:text="Välj kategori:"
+        android:layout_marginTop="64dp"
+        android:text="@string/kategori"
         android:textColor="#000000"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <RadioGroup
-        android:id="@+id/radioGroup"
+        android:id="@+id/rgkategori"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textKategori">
+
 
         <RadioButton
             android:id="@+id/radioButtonOmdome"
@@ -34,7 +35,7 @@
             android:layout_marginStart="24dp"
             android:layout_marginLeft="24dp"
             android:checked="true"
-            android:text="Omdöme"
+            android:text="@string/omdome"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textKategori" />
 
@@ -45,17 +46,17 @@
             android:layout_marginStart="24dp"
             android:layout_marginLeft="24dp"
             android:layout_marginTop="1dp"
-            android:text="Skadeanmälan"
+            android:text="@string/Skadeanmalan"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/radioButtonOmdome" />
 
         <RadioButton
-            android:id="@+id/radioForslag"
+            android:id="@+id/radioButtonForslag"
             android:layout_width="wrap_content"
             android:layout_height="32dp"
             android:layout_marginStart="24dp"
             android:layout_marginLeft="24dp"
-            android:text="Förslag"
+            android:text="@string/Forslag"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/radioButtonSkadeanmalan" />
 
@@ -65,7 +66,7 @@
             android:layout_height="32dp"
             android:layout_marginStart="24dp"
             android:layout_marginLeft="24dp"
-            android:text="Övrigt"
+            android:text="@string/ovrigt"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/radioForslag" />
     </RadioGroup>
@@ -75,13 +76,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
         android:layout_marginTop="24dp"
-        android:text="Kommentar:"
+        android:text="@string/kommentar"
         android:textColor="#000000"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup"
-        android:layout_marginLeft="24dp" />
+        app:layout_constraintTop_toBottomOf="@+id/rgkategori" />
 
     <EditText
         android:id="@+id/edit_text"
@@ -106,4 +107,68 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textKommentar"
         app:srcCompat="@mipmap/commandboxthinner" />
+
+    <TextView
+        android:id="@+id/textBild"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/bild"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edit_text"
+        android:visibility="invisible"
+        />
+
+    <TextView
+        android:id="@+id/textObl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/obl"
+        android:textColor="#595959"
+        android:textSize="18sp"
+        android:visibility="invisible"
+        app:layout_constraintStart_toEndOf="@+id/textBild"
+        app:layout_constraintTop_toBottomOf="@+id/edit_text" />
+
+    <Button
+        android:id="@+id/buttonBild"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textBild"
+        android:visibility="invisible"
+        android:onClick="onBildClick"/>
+
+    <RatingBar
+        android:id="@+id/ratingBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonBild" />
+
+    <Button
+        android:id="@+id/buttonSkicka"
+        android:layout_width="249dp"
+        android:layout_height="81dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/send"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ratingBar"
+        android:onClick="onSendClick"/>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
