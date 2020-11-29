@@ -17,6 +17,8 @@ public class ReviewPageActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Intent intent = getIntent();
+        setTitle(intent.getStringExtra("stop"));
         setContentView(R.layout.activity_reviewpage);
 
         rgKategori = findViewById(R.id.rgkategori);

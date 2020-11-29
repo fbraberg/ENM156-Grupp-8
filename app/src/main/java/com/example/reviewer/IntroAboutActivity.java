@@ -18,5 +18,6 @@ public class IntroAboutActivity extends AppCompatActivity {
         // Open map view
         Intent intent = new Intent(IntroAboutActivity.this, MapsActivity.class);
         startActivity(intent);
+        finish();
     }
 }

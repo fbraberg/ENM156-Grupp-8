@@ -55,6 +55,13 @@
             android:label="@string/title_activity_maps"
             android:theme="@style/NoActionBar">
         </activity>
+
+        <!-- Parent: MapsActivity -->
+        <activity
+            android:name=".ReviewPageActivity"
+            android:parentActivityName=".MapsActivity"
+            android:label="@string/title_activity_reviews">
+        </activity>
     </application>
 
 </manifest>

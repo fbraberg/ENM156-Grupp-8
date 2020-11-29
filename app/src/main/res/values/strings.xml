@@ -5,7 +5,7 @@
     <string name="vasttrafik_contentDescription">Västtrafik logotyp</string>
     <string name="vasttrafik_reviewer_contentDescription">Reviewer logotyp</string>
     <string name="about">
-        Med Västtrafiks Reviewer kan du ge betyg åt och rapportera in fel av respektive känd busshållplats i Sverige!
+        Med Västtrafiks Reviewer kan du ge betyg åt och rapportera in fel av respektive känd hållplats i Sverige!
         \n\nVälj hållplats genom att trycka på en ikon på kartan eller via sökfunktionen.</string>
     <string name="start">Start</string>
 
@@ -19,7 +19,10 @@
     <string name="bild">Bild:</string>
     <string name="obl">(Obligatorisk vid skadeanmälan)</string>
     <string name="send">Skicka</string>
-
+    <string name="search_label">searchBar</string>
+    <string name="search_hint">Sök efter hållplats...</string>
+    <string name="title_activity_reviews">"&lt;Bus stop&gt;"</string>
+    <string name="magnifying_glass_icon">🔍</string>
 
 
 </resources>
