@@ -8,9 +8,7 @@
     android:background="@color/västtrafik_blue"
     android:clickable="true"
     android:focusable="true"
-
-    android:focusableInTouchMode="true"
-    android:onClick="clearSearchFocus">
+    android:focusableInTouchMode="true">
 
     <fragment
         android:id="@+id/map"
@@ -18,15 +16,18 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
 
+        android:clickable="true"
         android:focusable="true"
         android:focusableInTouchMode="true"
+        android:onClick="onMapClick"
 
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:context=".MapsActivity"
-        tools:layout="@layout/activity_maps" />
+        app:layout_constraintVertical_bias="0.0"
+        tools:context=".MapsActivity" />
 
     <AutoCompleteTextView
         android:id="@+id/autoCompleteTextView"
@@ -43,17 +44,16 @@
         android:hint="@string/search_hint"
         android:iconifiedByDefault="false"
         android:lineSpacingExtra="8sp"
-        android:paddingLeft="50dp"
         android:paddingStart="50dp"
-        android:paddingRight="10dp"
+        android:paddingLeft="50dp"
         android:paddingEnd="10dp"
+        android:paddingRight="10dp"
         android:popupBackground="@color/white_80p"
         app:iconifiedByDefault="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-        </AutoCompleteTextView>
+        app:layout_constraintTop_toTopOf="parent"></AutoCompleteTextView>
 
     <TextView
         android:id="@+id/autoCompleteTextViewResults"
@@ -79,10 +79,122 @@
         android:layout_marginLeft="16dp"
         android:layout_marginTop="12dp"
         android:layout_marginBottom="12dp"
-        android:src="@drawable/magnifying_glass"
         android:contentDescription="@string/magnifying_glass_icon"
+        android:src="@drawable/magnifying_glass"
         app:layout_constraintBottom_toBottomOf="@+id/autoCompleteTextView"
         app:layout_constraintStart_toStartOf="@+id/autoCompleteTextView"
-        app:layout_constraintTop_toTopOf="@+id/autoCompleteTextView"/>
+        app:layout_constraintTop_toTopOf="@+id/autoCompleteTextView" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/card"
+        android:layout_width="match_parent"
+        android:layout_height="192dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginBottom="36dp"
+        android:background="@drawable/card"
+        android:clickable="true"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="16dp"
+            android:background="@color/västtrafik_blue"
+            android:onClick="leaveFeedback"
+            android:text="@string/feedback_button_text"
+            android:textColor="@color/white"
+            app:cornerRadius="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <RatingBar
+            android:id="@+id/card_rating_bar"
+            style="@style/Widget.AppCompat.RatingBar.Small"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginStart="54dp"
+            android:layout_marginLeft="54dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="24dp"
+            android:clickable="false"
+            android:isIndicator="true"
+            android:numStars="5"
+            android:rating="0"
+            android:scaleX="2"
+            android:scaleY="2"
+            android:theme="@style/RatingBar"
+            app:layout_constraintBottom_toTopOf="@+id/card_status_description"
+            app:layout_constraintStart_toEndOf="@+id/card_image"
+            app:layout_constraintTop_toBottomOf="@+id/card_stop_name" />
+
+        <TextView
+            android:id="@+id/card_stop_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/stop_name"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toEndOf="@+id/card_image"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/card_image"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="16dp"
+            app:layout_constraintBottom_toTopOf="@+id/button"
+            app:layout_constraintEnd_toStartOf="@+id/card_status_indicator"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <TextView
+            android:id="@+id/card_status_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="16dp"
+            android:text="@string/status_description_ok"
+            android:textColor="@color/status_ok"
+            app:layout_constraintBottom_toTopOf="@+id/button"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/card_status_indicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="2dp"
+            android:layout_marginRight="2dp"
+            android:layout_marginBottom="16dp"
+            android:text="@string/status_ok"
+            android:textColor="@color/status_ok"
+            app:layout_constraintBottom_toTopOf="@+id/button"
+            app:layout_constraintEnd_toStartOf="@+id/card_status_description" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

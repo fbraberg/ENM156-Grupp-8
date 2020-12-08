@@ -29,5 +29,10 @@
         <item name="windowNoTitle">true</item>
         <item name="android:textColorHint">@color/västtrafik_blue</item>
     </style>
+    <style name="RatingBar" parent="Theme.AppCompat">
+        <item name="colorControlNormal">@color/light_grey</item>
+        <item name="colorControlActivated">@color/västtrafik_blue</item>
+    </style>
+
 
 </resources>

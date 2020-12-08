@@ -23,6 +23,11 @@
     <string name="search_hint">Sök efter hållplats...</string>
     <string name="title_activity_reviews">"&lt;Bus stop&gt;"</string>
     <string name="magnifying_glass_icon">🔍</string>
+    <string name="feedback_button_text">Lämna feedback</string>
+    <string name="status_ok">✓</string>
+    <string name="status_problem">!</string>
+    <string name="status_description_ok">Inga nuvarade problem</string>
+    <string name="stop_name">NameOfBusStop</string>
 
 
 </resources>
