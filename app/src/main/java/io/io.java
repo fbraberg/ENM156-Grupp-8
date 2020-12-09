@@ -1,6 +1,7 @@
 package io;
 
 
+import android.content.Context;
 import android.util.Log;
 
 import org.json.JSONArray;
@@ -8,86 +9,99 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
-
+import java.io.InputStream;
+import java.io.ObjectOutputStream;
+import java.io.OutputStream;
 
 
 public class io {
 
+    private static final String FILE_NAME = "stations.json";
+    private static final String ARRAY_NAME = "stations";
 
+    public static JSONArray readStations (Context context) throws JSONException, IOException {
 
-    public String[] readStations (String path) throws JSONException {
+        String content = loadJSONAsString(FILE_NAME, context);
+        JSONObject reader = new JSONObject(content);
+
+        return reader.getJSONArray(ARRAY_NAME);
+    }
+
+    public static JSONObject readStation (String name, Context context)  {
+        try {
+
+            String content = loadJSONAsString(FILE_NAME, context);
+
+            JSONObject reader = new JSONObject(content);
+            JSONArray stations = reader.getJSONArray("name");
+
+            int index = 0;
+            JSONObject station;
+            // Find the right station based on name
+            while (index < stations.length()) {
+                station = stations.getJSONObject(index);
+                if (station.getString("name").equals(name))
+                    return station;
+            }
+            return stations.getJSONObject(index);
+        } catch (JSONException e) {
+            Log.v("MEMEERROR1", e.getMessage());
+        }
         return null;
     }
 
-    public static String readStation (String path, String name) throws JSONException {
+    public static void writeStation(JSONObject json, Context context) {
 
-        JSONObject reader = new JSONObject("{\n" +
-                "    \"stations\": \n" +
-                "    [\n" +
-                "        {\n" +
-                "            \"name\" : \"Kungsportsplatsen\",\n" +
-                "            \"image\" : \"----------\",\n" +
-                "            \"ratings\" : \n" +
-                "            [\n" +
-                "                {\"stars\": 2},\n" +
-                "                {\"stars\": 5}\n" +
-                "            ],\n" +
-                "            \"reports\" : \n" +
-                "            [\n" +
-                "                {\n" +
-                "                    \"category\" : \"opinion\",\n" +
-                "                    \"comment\" : \"Hållplatsen är sämst\",\n" +
-                "                    \"picture\" : \"-----\"\n" +
-                "                },\n" +
-                "                {\n" +
-                "                    \"category\" : \"Suggestion\",\n" +
-                "                    \"comment\" : \"Måla den röd\",\n" +
-                "                    \"picture\" : \"-----\"\n" +
-                "                }\n" +
-                "            ]\n" +
-                "        },\n" +
-                "        {\n" +
-                "            \"name\" : \"Nordstan\",\n" +
-                "            \"image\" : \"----------\",\n" +
-                "            \"ratings\" : \n" +
-                "            [\n" +
-                "                {\"stars\": \"-----\"}\n" +
-                "            ],\n" +
-                "            \"reports\" : \n" +
-                "            [\n" +
-                "                {\n" +
-                "                    \"category\" : \"-----\",\n" +
-                "                    \"comment\" : \"-----\",\n" +
-                "                    \"picture\" : \"-----\"\n" +
-                "                },\n" +
-                "                {\n" +
-                "                    \"category\" : \"-----\",\n" +
-                "                    \"comment\" : \"-----\",\n" +
-                "                    \"picture\" : \"-----\"\n" +
-                "                }\n" +
-                "            ]\n" +
-                "        }\n" +
-                "    ]\n" +
-                "\n" +
-                "}");
-        JSONArray stations = reader.getJSONArray("stations");
+        String fileContents = json.toString();
+        FileOutputStream outputStream;
 
-        for (int i = 0; i < stations.length(); i++) {
-            JSONObject c = stations.getJSONObject(i);
-            Log.v("STAT" + i, c.getString("name"));
+        try {
+            outputStream = context.openFileOutput(FILE_NAME, Context.MODE_PRIVATE);
+            outputStream.write(fileContents.getBytes());
+            outputStream.close();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
-
-        return null;
+        Log.v("LELELELELELEL", loadJSONAsString(FILE_NAME, context));
     }
 
-    public void writeStations (String path) {
+
+     //This one works in but it needs to be better
+    private static String loadJSONAsString(String path, Context context) {
+        File file = new File(context.getFilesDir(),FILE_NAME);
+        StringBuilder stringBuilder = new StringBuilder();
+
+        try {
+            /*if( !file.exists() ){
+                if( !file.createNewFile()){
+                    return "COULDN'T CREATE FILE: " + FILE_NAME;
+                }
+            }*/
+            FileReader fileReader = new FileReader(file);
+
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+            Log.v("MAYBE", "lele: " + bufferedReader.readLine());
+            String line = bufferedReader.readLine();
+
+            while (line != null){
+                stringBuilder.append(line).append("\n");
+                line = bufferedReader.readLine();
+            }
+            bufferedReader.close();
+
+        } catch (FileNotFoundException e) { e.printStackTrace(); }
+          catch (IOException e)           { e.printStackTrace(); }
+
+        return stringBuilder.toString();
 
     }
-
-    public void writeStation (String path) {
-
-    }
-
 }
