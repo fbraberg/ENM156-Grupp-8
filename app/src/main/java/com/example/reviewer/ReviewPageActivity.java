@@ -1,11 +1,15 @@
 package com.example.reviewer;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.FileProvider;
 
+import android.app.Activity;
 import android.content.ActivityNotFoundException;
+import android.content.ContentValues;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.media.Image;
+import android.media.ThumbnailUtils;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -13,22 +17,26 @@ import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class ReviewPageActivity extends AppCompatActivity {
 
     private RadioGroup rgKategori;
     private RadioButton skadeAnmalan;
     private RatingBar ratingBar;
-
+    ImageView imageViewPhoto;
     private boolean imageTaken = false;
-    private File output=null;
-    private static final int CONTENT_REQUEST=1337;
+    String currentPhotoPath;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +49,7 @@ public class ReviewPageActivity extends AppCompatActivity {
         TextView textBild = findViewById(R.id.textBild);
         TextView textObl = findViewById(R.id.textObl);
         Button buttonBild = findViewById(R.id.buttonBild);
+        imageViewPhoto = findViewById(R.id.imageViewPhoto);
 
         ratingBar = findViewById(R.id.ratingBar);
         skadeAnmalan = findViewById(R.id.radioButtonSkadeanmalan);
@@ -62,24 +71,29 @@ public class ReviewPageActivity extends AppCompatActivity {
         });
     }
 
-    // NEEDS TO BE TESTED
     public void onBildClick(View view) {
         imageTaken = true;
-        Intent intent = new Intent(MediaStore.INTENT_ACTION_STILL_IMAGE_CAMERA);
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        startActivityForResult(intent,0);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        Bitmap bitmap = (Bitmap)data.getExtras().get("data");
+        imageViewPhoto.setImageBitmap(bitmap);
+
+        File dir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
         try {
-            startActivityForResult(intent, 1);
-        } catch (ActivityNotFoundException e) {
-
+            File photoFile = createImageFile();
+            Log.v("FILENAME: ", "" + photoFile);
+            FileOutputStream out = new FileOutputStream(photoFile);
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, out);
+            // PNG is a lossless format, the compression factor (100) is ignored
+         } catch (IOException e) {
+            // Error occurred while creating the File
+            e.printStackTrace();
         }
-        //onActivityResult(1, RESULT_OK, intent);
-        Bundle extras = intent.getExtras();
-        //Bitmap imageBitmap = (Bitmap) extras.get("intent");
-        File direct = new File(Environment.getExternalStorageDirectory() + "/DirName");
-        File dir = Environment.getExternalStoragePublicDirectory("..\\res\\stations\\images");
-        output=new File(dir, "CameraContentDemo.jpeg");
-
-        intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(output));
-        startActivityForResult(intent, CONTENT_REQUEST);
     }
 
     public void onSendClick(View view) {
@@ -90,8 +104,22 @@ public class ReviewPageActivity extends AppCompatActivity {
                 if(imageTaken)
                     Log.v("STARS", "MR yes");
         }
-
         // TODO Store all the data that has been filled in
         imageTaken = false;
+    }
+
+    private File createImageFile() throws IOException {
+        // Create an image file name
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        String imageFileName = timeStamp + "_";
+        File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+        File image = File.createTempFile(
+                imageFileName,  /* prefix */
+                ".png",         /* suffix */
+                storageDir      /* directory */
+        );
+        // Save a file: path for use with ACTION_VIEW intents
+        currentPhotoPath = image.getAbsolutePath();
+        return image;
     }
 }
