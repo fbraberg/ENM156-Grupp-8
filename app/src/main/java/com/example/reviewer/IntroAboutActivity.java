@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.File;
@@ -31,8 +32,13 @@ public class IntroAboutActivity extends AppCompatActivity {
         Intent intent = new Intent(IntroAboutActivity.this, MapsActivity.class);
         startActivity(intent);
         try {
-            io.io.initBackend(this);
-            Log.v("JSONOBJECT",io.io.readJSON(this).get(0).toString());
+            File file = new File(this.getFilesDir(),io.io.FILE);
+            if(!file.exists())
+                io.io.initBackend(this);
+
+            //JSONObject station = io.io.readStation("Kungsportsplatsen", this);
+            io.io.submitForm("Kungsportsplatsen", "opinion", "Trash", 1, "---", this);
+            //Log.v("STATIONERINO", "lol" + station.toString());
         } catch (Exception e) {
             Log.v("MEMEERROR", e.getMessage());
         }

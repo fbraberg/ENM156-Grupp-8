@@ -17,29 +17,29 @@
           "picture" : "-----"
         },
         {
-          "category" : "Suggestion",
+          "category" : "suggestion",
           "comment" : "Måla den röd",
           "picture" : "-----"
         }
       ]
     },
     {
-      "name" : "----------",
+      "name" : "Kappelplatsen",
       "image" : "----------",
       "ratings" :
       [
-        {"stars": "-----"}
+        {"stars": "5"}
       ],
       "reports" :
       [
         {
-          "category" : "-----",
-          "comment" : "-----",
+          "category" : "opinion",
+          "comment" : "Hållplatsen är tråkig",
           "picture" : "-----"
         },
         {
-          "category" : "-----",
-          "comment" : "-----",
+          "category" : "suggestion",
+          "comment" : "Hållplatsen är bäst",
           "picture" : "-----"
         }
       ]
