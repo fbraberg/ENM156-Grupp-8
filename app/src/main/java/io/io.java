@@ -1,107 +1,114 @@
 package io;
 
-
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.util.JsonReader;
 import android.util.Log;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.ObjectOutputStream;
-import java.io.OutputStream;
-
+import java.io.InputStreamReader;
 
 public class io {
 
-    private static final String FILE_NAME = "stations.json";
+    private static final String INIT_FILE = "init_stations.json";
+    private static final String FILE= "stations.json";
     private static final String ARRAY_NAME = "stations";
 
-    public static JSONArray readStations (Context context) throws JSONException, IOException {
-
-        String content = loadJSONAsString(FILE_NAME, context);
-        JSONObject reader = new JSONObject(content);
-
-        return reader.getJSONArray(ARRAY_NAME);
-    }
-
-    public static JSONObject readStation (String name, Context context)  {
+    public static void initBackend(Context context) {
+        BufferedReader reader = null;
+        StringBuilder sb = new StringBuilder();
         try {
+            reader = new BufferedReader(
+                    new InputStreamReader(context.getAssets().open(INIT_FILE)));
 
-            String content = loadJSONAsString(FILE_NAME, context);
-
-            JSONObject reader = new JSONObject(content);
-            JSONArray stations = reader.getJSONArray("name");
-
-            int index = 0;
-            JSONObject station;
-            // Find the right station based on name
-            while (index < stations.length()) {
-                station = stations.getJSONObject(index);
-                if (station.getString("name").equals(name))
-                    return station;
+            String mLine;
+            while ((mLine = reader.readLine()) != null) {
+                sb.append(mLine);
             }
-            return stations.getJSONObject(index);
-        } catch (JSONException e) {
-            Log.v("MEMEERROR1", e.getMessage());
-        }
-        return null;
-    }
-
-    public static void writeStation(JSONObject json, Context context) {
-
-        String fileContents = json.toString();
-        FileOutputStream outputStream;
-
-        try {
-            outputStream = context.openFileOutput(FILE_NAME, Context.MODE_PRIVATE);
-            outputStream.write(fileContents.getBytes());
-            outputStream.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        Log.v("LELELELELELEL", loadJSONAsString(FILE_NAME, context));
-    }
-
-
-     //This one works in but it needs to be better
-    private static String loadJSONAsString(String path, Context context) {
-        File file = new File(context.getFilesDir(),FILE_NAME);
-        StringBuilder stringBuilder = new StringBuilder();
-
-        try {
-            /*if( !file.exists() ){
-                if( !file.createNewFile()){
-                    return "COULDN'T CREATE FILE: " + FILE_NAME;
+        } catch (IOException e) {
+            //log the exception
+        } finally {
+            if (reader != null) {
+                try {
+                    reader.close();
+                } catch (IOException e) {
+                    //log the exception
                 }
-            }*/
-            FileReader fileReader = new FileReader(file);
+            }
+        }
+        JSONObject json = null;
+        try {
+            json = new JSONObject(sb.toString());
+        } catch (JSONException e) {Log.v("JSON_ERROR_1", e.getMessage());}
+        writeJSON(json, context);
 
-            BufferedReader bufferedReader = new BufferedReader(fileReader);
-            Log.v("MAYBE", "lele: " + bufferedReader.readLine());
+    }
+
+    public static void writeJSON(JSONObject json, Context context){
+        String userString = json.toString();
+        File file = new File(context.getFilesDir(),FILE);
+        BufferedWriter bufferedWriter;
+        FileWriter fileWriter;
+
+        try {
+            fileWriter = new FileWriter(file);
+            bufferedWriter = new BufferedWriter(fileWriter);
+            bufferedWriter.write(userString);
+            bufferedWriter.close();
+        } catch (IOException e) {
+            Log.v("WRITE_ERROR", e.getMessage());
+        }
+    }
+
+    public static JSONArray readJSON(Context context) {
+        File file = new File(context.getFilesDir(),FILE);
+        FileReader fileReader;
+        BufferedReader bufferedReader;
+        StringBuilder stringBuilder;
+        try {
+            fileReader = new FileReader(file);
+            bufferedReader = new BufferedReader(fileReader);
+            stringBuilder = new StringBuilder();
             String line = bufferedReader.readLine();
-
             while (line != null){
                 stringBuilder.append(line).append("\n");
                 line = bufferedReader.readLine();
             }
             bufferedReader.close();
-
+            return new JSONArray(stringBuilder.toString());
         } catch (FileNotFoundException e) { e.printStackTrace(); }
-          catch (IOException e)           { e.printStackTrace(); }
+          catch (IOException e) {           e.printStackTrace(); }
+          catch (JSONException e) {         e.printStackTrace();
+        }
 
-        return stringBuilder.toString();
+        return null;
+    }
+
+    public static void submitForm(String stationName, String category, String comment, int rating, String picturePath) {
+        JSONObject station = readStation("sd", null);
+    }
+
+    public static JSONObject readStation(String stationName, JSONArray stations) {
+        int index = 0;
+        while (index < stations.length()) {
+            //if(stations.get(index))
+            //index++
+        }
+        return null;
+    }
+
+    public static void writeJSON(Bitmap bmp, Context context) {
 
     }
+
 }

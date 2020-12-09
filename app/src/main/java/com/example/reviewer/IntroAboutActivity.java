@@ -31,17 +31,8 @@ public class IntroAboutActivity extends AppCompatActivity {
         Intent intent = new Intent(IntroAboutActivity.this, MapsActivity.class);
         startActivity(intent);
         try {
-            File file = new File(this.getFilesDir(),"stations.json");
-            if( !file.exists() ){
-                file.createNewFile()){
-
-                }
-            }
-
-            //JSONObject stat = io.io.readStation("Kungsportsplatsen", this);
-            //Log.v("WORKSBOI", stat.getString("name"));
-            //stat.put("hehexd", 1337);
-            //io.io.writeStation(stat, this);
+            io.io.initBackend(this);
+            Log.v("JSONOBJECT",io.io.readJSON(this).get(0).toString());
         } catch (Exception e) {
             Log.v("MEMEERROR", e.getMessage());
         }
