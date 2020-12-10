@@ -31,6 +31,7 @@ public class IntroAboutActivity extends AppCompatActivity {
         // Open map view
         Intent intent = new Intent(IntroAboutActivity.this, MapsActivity.class);
         startActivity(intent);
+
         try {
             File file = new File(this.getFilesDir(),io.io.FILE);
             if(!file.exists())
@@ -45,7 +46,7 @@ public class IntroAboutActivity extends AppCompatActivity {
             Log.v("MEMEERROR_2", e.getMessage());
         }
 
-
+        finish();
 
     }
 }

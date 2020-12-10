@@ -20,6 +20,7 @@ public class IntroSplashActivity extends AppCompatActivity {
         new Handler(Looper.getMainLooper()).postDelayed(() -> {
             Intent intent = new Intent(IntroSplashActivity.this, IntroAboutActivity.class);
             startActivity(intent);
+            finish();
         }, 3000);
     }
 
