@@ -186,27 +186,28 @@ public class io {
         return null;
     }
 
-    public static float calculateMeanRating(JSONObject station){
-        float meanRating = 0;
+    public static float getMeanRating(JSONObject station){
+        double ratingSum = 0;
         JSONArray ratings = null;
         int i;
         try {
             ratings = station.getJSONArray("ratings");
 
             for (i = 0; i < ratings.length();i++) {
-                meanRating += Float.parseFloat(ratings.get(i).toString());
-                // TODO Print and test method
+                ratingSum += ratings.getJSONObject(i).getDouble("stars");
             }
 
-            return meanRating/i;
+            Log.v("BOI", "lol");
+            return (float) ratingSum/i;
 
         } catch (JSONException e) {
             Log.v("JSON_ERROR", e.getMessage());
         }
 
-
-
+        return 0f;
     }
+
+
 
 
     //TODO Store image,  Add a bunch of stations to init_stations.json,

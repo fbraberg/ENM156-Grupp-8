@@ -36,11 +36,13 @@ public class IntroAboutActivity extends AppCompatActivity {
             if(!file.exists())
                 io.io.initBackend(this);
 
-            //JSONObject station = io.io.readStation("Kungsportsplatsen", this);
-            io.io.submitForm("Kungsportsplatsen", "opinion", "Trash", 1, "---", this);
-            //Log.v("STATIONERINO", "lol" + station.toString());
+            JSONObject station = io.io.readStation("Kungsportsplatsen", this);
+            //io.io.submitForm("Kungsportsplatsen", "opinion", "Trash", 1, "---", this);
+            float f = io.io.getMeanRating(station);
+            Log.v("STATIONERINO", "lol" + station.toString());
+            Log.v("STATIONERINO", "lol" + f);
         } catch (Exception e) {
-            Log.v("MEMEERROR", e.getMessage());
+            Log.v("MEMEERROR_2", e.getMessage());
         }
 
 
