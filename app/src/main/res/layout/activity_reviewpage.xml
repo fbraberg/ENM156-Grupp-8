@@ -85,7 +85,7 @@
         app:layout_constraintTop_toBottomOf="@+id/rgkategori" />
 
     <EditText
-        android:id="@+id/edit_text"
+        android:id="@+id/kommentar"
         android:layout_width="379dp"
         android:layout_height="150dp"
         android:layout_marginTop="8dp"
@@ -119,7 +119,7 @@
         android:textColor="#000000"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edit_text"
+        app:layout_constraintTop_toBottomOf="@+id/kommentar"
         android:visibility="invisible"
         />
 
@@ -135,7 +135,7 @@
         android:textSize="18sp"
         android:visibility="invisible"
         app:layout_constraintStart_toEndOf="@+id/textBild"
-        app:layout_constraintTop_toBottomOf="@+id/edit_text" />
+        app:layout_constraintTop_toBottomOf="@+id/kommentar" />
 
     <Button
         android:id="@+id/buttonBild"

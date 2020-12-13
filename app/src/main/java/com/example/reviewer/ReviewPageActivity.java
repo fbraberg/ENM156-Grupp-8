@@ -1,28 +1,21 @@
 package com.example.reviewer;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.FileProvider;
-
-import android.app.Activity;
-import android.content.ActivityNotFoundException;
-import android.content.ContentValues;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.media.Image;
-import android.media.ThumbnailUtils;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RatingBar;
 import android.widget.TextView;
-
+import android.widget.Toast;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -34,9 +27,14 @@ public class ReviewPageActivity extends AppCompatActivity {
     private RadioGroup rgKategori;
     private RadioButton skadeAnmalan;
     private RatingBar ratingBar;
+    private EditText kommentar;
     ImageView imageViewPhoto;
+
     private boolean imageTaken = false;
     String currentPhotoPath;
+    String comment;
+    File photoFile;
+    float rating;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +48,7 @@ public class ReviewPageActivity extends AppCompatActivity {
         TextView textObl = findViewById(R.id.textObl);
         Button buttonBild = findViewById(R.id.buttonBild);
         imageViewPhoto = findViewById(R.id.imageViewPhoto);
+        kommentar = findViewById(R.id.kommentar);
 
         ratingBar = findViewById(R.id.ratingBar);
         skadeAnmalan = findViewById(R.id.radioButtonSkadeanmalan);
@@ -72,6 +71,7 @@ public class ReviewPageActivity extends AppCompatActivity {
     }
 
     public void onBildClick(View view) {
+        // Images are stored on the device under /storage/emulated/0/Android/data/com.example.reviewer/files/Pictures
         imageTaken = true;
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         startActivityForResult(intent,0);
@@ -82,10 +82,8 @@ public class ReviewPageActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         Bitmap bitmap = (Bitmap)data.getExtras().get("data");
         imageViewPhoto.setImageBitmap(bitmap);
-
-        File dir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
         try {
-            File photoFile = createImageFile();
+            photoFile = createImageFile();
             Log.v("FILENAME: ", "" + photoFile);
             FileOutputStream out = new FileOutputStream(photoFile);
             bitmap.compress(Bitmap.CompressFormat.PNG, 100, out);
@@ -97,16 +95,27 @@ public class ReviewPageActivity extends AppCompatActivity {
     }
 
     public void onSendClick(View view) {
-        // TODO Check the if reviewer has filled in the form correctly (added image & commend etc..)
-        if(ratingBar.getRating() < 0.5f) {
-            Log.v("ID:", "" + rgKategori.getCheckedRadioButtonId());
-            if(rgKategori.getCheckedRadioButtonId() == skadeAnmalan.getId())
-                if(imageTaken)
-                    Log.v("STARS", "MR yes");
+        // Check if the reviewer has given a star rating and taken an image
+        if (ratingBar.getRating() < 0.5f) {
+            Toast.makeText(ReviewPageActivity.this, "Betyg måste ges!", Toast.LENGTH_SHORT).show();
+        } else if(((rgKategori.getCheckedRadioButtonId() != skadeAnmalan.getId())) ||
+                ((rgKategori.getCheckedRadioButtonId() == skadeAnmalan.getId()) && imageTaken &&
+                        (ratingBar.getRating() > 0.5f))) {
+            Toast.makeText(ReviewPageActivity.this, "Tack för din anmälan!", Toast.LENGTH_LONG).show();
+            imageTaken = false;
+            // Store comment
+            comment = kommentar.getText().toString();
+            // Store rating
+            rating = ratingBar.getRating();
+            // Photo file path can be found in photoFile
+
+            // TODO Write info to the Json file
+            // Send the user back to the map view
+            Intent intent = new Intent(ReviewPageActivity.this, MapsActivity.class);
+            startActivity(intent);
         }
-        // TODO Store all the data that has been filled in
-        imageTaken = false;
     }
+
 
     private File createImageFile() throws IOException {
         // Create an image file name
