@@ -1,14 +1,65 @@
 \documentclass{article}
 \usepackage[utf8]{inputenc}
+\usepackage{verbatim}
 
-\title{ENM156 Rapport}
-\author{Felix Bråberg, [insert names]}
+\title{
+  Västtrafik Reviewer \\
+  \large Projektarbete av grupp 8 i kurs ENM156, Hållbar utveckling och etik inom datateknik }
+  
+\author{Alaa Eddin Alasiri, Felix Bråberg, \\Linus Johansson, Oscar Lilja, Rik Muijs, Philip Vedin}
 \date{November 2020}
+
+
+%======================/SAKER SOM SKA VARA MED I RAPPORTEN\======================
+\begin{comment}
+Generellt:
+-Referera till kurslitteratur inom kursen
+-Målgrupp = andra studenter i kursen
+-Mellan 6-9 sidor
+-Reflekterande text tydligen
+
+Element som ska vara med:
+-En kort beskrivning av er applikation.
+-Reflektion kopplat till hållbarhet och etik.
+-Hur skulle ni kunna göra bättre?
+-Vilka är egna lärdomar?
+
+För att rapporten ska var godkänd krävs att:
+• Alla fyra punkter från listan ovan finns redovisade i rapporten
+• Ni använder på ett korrekt sätt begrepp och teorier om hållbar utveckling och etik som presenteras i kurslitteraturen och föreläsningarna
+• Ni skriver utifrån er själva och era egna erfarenheter
+• Ni reflekterar över grunder och konsekvenser över ert förhållningssätt
+• Ni väger olika argument mot varandra
+• Rapporten är välskriven så att resonemangen går att förstå för nån som inte var med i gruppen 
+
+\end{comment}
+%======================\SAKER SOM SKA VARA MED I RAPPORTEN/======================
 
 \begin{document}
 
 \maketitle
 
-\section{Introduction}
+\section*{Applikationen}
+\textit{Västtrafik Reviewer} är en app för att betygsätta och skaderapportera hållplatser runtom i Sverige. Appen presenterar en interaktiv karta över Sverige där användaren kan trycka på ikoner som representerar diverse hållplatser i landet. Ett tryck på någon ikon presenterar ett fönster med information och bild på hållplatsen, se figur \ref{[LÄGG TILL BILD]}. Från den sidan kan användaren trycka på en knapp för att lämna en rapport om hållplatsen. På den sidan, figur \ref{[LÄGG TILL BILD]}, får användaren fylla i olika fält. Dessa fält är:
+\begin{description}
+\item[Kategori] som är vad för sorts rapport det är.
+\item[Kommentar] som är kommentaren som användaren vill ge för platsen.
+\item[Bild] som skickas om kategorin som är vald är \textit{Skadeanmälan}.
+\item[Stjärnor] för att ge ett betyg för hållplatsen.
+\end{description}
+
+\subsection*{Målgrupp}
+Den målgrupp som appen har som målgrupp är individer som reser med buss och tåg. 
+
+\subsection*{Avgränsningar}
+Det fanns många potentiella funktioner som hade kunnat implementerats och som även togs upp. Däremot, på grund av tidsbegränsningar, exkluderades dessa funktioner. Funktioner som exempelvis \textit{intsällningar} hade varit önskevärt för att erbjuda användaren större applikationsanpassning. Saker som olika färgteman och alternativa språk hade ökat tillgänglighetsaspekten av appen avsevärt. Dessutom fanns tekniska besvär som orsakade avgränsningar.
+\\\\
+Det var tänkt att alla hållplatser skulle hämtas från en API. Men nyckeln för att få tillgång till hållplatserna fungerade aldrig. Därför skapades istället en backend i programmet som innehåller ett antal hårdkodade hållplatser. 
+
+\section*{Etik- och Hållbarhetsaspekter}
+
+
+\section*{Förbättringsområden}
+\section*{Reflektion}
 
 \end{document}
