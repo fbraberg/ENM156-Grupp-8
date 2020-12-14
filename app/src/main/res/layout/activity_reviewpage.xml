@@ -24,6 +24,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
+        android:checkedButton="@id/radioButtonSkadeanmalan"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textKategori">
 
@@ -175,13 +176,12 @@
         android:layout_width="249dp"
         android:layout_height="81dp"
         android:layout_marginTop="8dp"
+        android:onClick="onSendClick"
         android:text="@string/send"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ratingBar"
-        android:onClick="onSendClick"/>
-
+        app:layout_constraintTop_toBottomOf="@+id/ratingBar" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

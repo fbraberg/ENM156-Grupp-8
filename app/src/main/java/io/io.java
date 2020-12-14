@@ -119,7 +119,7 @@ public class io {
     /*
      * Submits the form from the review page
      */
-    public static void submitForm(String stationName, String category, String comment, int stars, String picturePath, Context context) {
+    public static void submitForm(String stationName, String category, String comment, float stars, String picturePath, Context context) {
         JSONObject report = new JSONObject();
         JSONObject rating = new JSONObject();
         JSONObject station = null;
@@ -159,6 +159,7 @@ public class io {
                     newStations.put(stations.get(index));
             }
             JSONObject obj = new JSONObject();
+
             obj.put("stations", newStations);
             writeJSON(obj, context);
         } catch (JSONException e) {

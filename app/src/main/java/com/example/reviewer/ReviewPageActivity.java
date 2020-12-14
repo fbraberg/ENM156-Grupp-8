@@ -38,6 +38,11 @@ public class ReviewPageActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // TODO REMOVE!!!!
+        File file = new File(this.getFilesDir(),io.io.FILE);
+        if(!file.exists())
+            io.io.initBackend(this);
+
         super.onCreate(savedInstanceState);
         Intent intent = getIntent();
         setTitle(intent.getStringExtra("stop"));
@@ -71,6 +76,7 @@ public class ReviewPageActivity extends AppCompatActivity {
     }
 
     public void onBildClick(View view) {
+        Log.v("BILDCLICK", "yes");
         // Images are stored on the device under /storage/emulated/0/Android/data/com.example.reviewer/files/Pictures
         imageTaken = true;
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -94,7 +100,8 @@ public class ReviewPageActivity extends AppCompatActivity {
         }
     }
 
-    public void onSendClick(View view) {
+    public void onSendClick(View view) throws IOException {
+
         // Check if the reviewer has given a star rating and taken an image
         if (ratingBar.getRating() < 0.5f) {
             Toast.makeText(ReviewPageActivity.this, "Betyg måste ges!", Toast.LENGTH_SHORT).show();
@@ -102,14 +109,21 @@ public class ReviewPageActivity extends AppCompatActivity {
                 ((rgKategori.getCheckedRadioButtonId() == skadeAnmalan.getId()) && imageTaken &&
                         (ratingBar.getRating() > 0.5f))) {
             Toast.makeText(ReviewPageActivity.this, "Tack för din anmälan!", Toast.LENGTH_LONG).show();
-            imageTaken = false;
+
             // Store comment
             comment = kommentar.getText().toString();
             // Store rating
             rating = ratingBar.getRating();
             // Photo file path can be found in photoFile
 
-            // TODO Write info to the Json file
+            Log.v("LEL", rgKategori.getCheckedRadioButtonId()+"");
+
+            if(imageTaken)
+                io.io.submitForm("Kungsportsplatsen", readCategory(), comment, ratingBar.getRating(), photoFile.getPath(), this);
+            else
+                io.io.submitForm("Kungsportsplatsen", readCategory(), comment, ratingBar.getRating(), "", this);
+            
+            imageTaken = false;
             // Send the user back to the map view
             Intent intent = new Intent(ReviewPageActivity.this, MapsActivity.class);
             startActivity(intent);
@@ -128,7 +142,24 @@ public class ReviewPageActivity extends AppCompatActivity {
                 storageDir      /* directory */
         );
         // Save a file: path for use with ACTION_VIEW intents
+
         currentPhotoPath = image.getAbsolutePath();
         return image;
     }
+
+    private String readCategory () {
+        switch (rgKategori.getCheckedRadioButtonId()) {
+            case 2131231001:
+                return "Omdöme";
+            case 2131231003:
+                return "Skadeanmälan";
+            case 2131231000:
+                return "Förslag";
+            case 2131231002:
+                return "Övrigt";
+
+        }
+        return null;
+    }
+
 }
