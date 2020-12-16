@@ -329,23 +329,25 @@ public class MapsActivity extends AppCompatActivity implements
      * @param stopName          = marker.getTitle()
      * @param rating            = float
      * @param statusColorId     = R.color.status_ok OR R.color.status_problem
-     * @param indicatorSymbol   = R.string.status_ok OR R.string.status_ok
+     * @param indicatorSymbol   = R.string.status_ok OR R.string.status_problem
      * @param statusDescription = R.string.status_description_ok OR String
      * @param drawableId        = R.drawable.{file_name}
      */
     public void openCard(String stopName, float rating, int statusColorId, int indicatorSymbol, String statusDescription, int drawableId) {
         int statusColor = getResources().getColor(statusColorId);
         TextView stop = findViewById(R.id.card_stop_name); // Displays the name of the bus stop
-        stop.setText(stopName);
         RatingBar ratingBar = findViewById(R.id.card_rating_bar);
-        ratingBar.setRating(rating);
         TextView indicator = findViewById(R.id.card_status_indicator); // @string/status_ok or @string/status_problem
+        TextView description = findViewById(R.id.card_status_description); // e.g are there broken windows?
+        ImageView image = findViewById(R.id.card_image); // Displays image of bus stop
+
+        stop.setText(stopName);
+        ratingBar.setRating(rating);
         indicator.setText(indicatorSymbol);
         indicator.setTextColor(statusColor);
-        TextView description = findViewById(R.id.card_status_description); // e.g are there broken windows?
         description.setText(statusDescription);
         description.setTextColor(statusColor);
-        ImageView image = findViewById(R.id.card_image); // Image of bus stop
+
         image.setImageDrawable(getResources().getDrawable(drawableId));
 
         card.setVisibility(View.VISIBLE);
