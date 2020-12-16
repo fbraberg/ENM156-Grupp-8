@@ -31,6 +31,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
+        android:checkedButton="@id/radioButtonSkadeanmalan"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textKategori">
 
@@ -96,7 +97,7 @@
         app:layout_constraintTop_toBottomOf="@+id/rgkategori" />
 
     <EditText
-        android:id="@+id/edit_text"
+        android:id="@+id/kommentar"
         android:layout_width="379dp"
         android:layout_height="150dp"
         android:layout_marginTop="8dp"
@@ -130,7 +131,7 @@
         android:textColor="#000000"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edit_text"
+        app:layout_constraintTop_toBottomOf="@+id/kommentar"
         android:visibility="invisible"
         />
 
@@ -146,7 +147,7 @@
         android:textSize="18sp"
         android:visibility="invisible"
         app:layout_constraintStart_toEndOf="@+id/textBild"
-        app:layout_constraintTop_toBottomOf="@+id/edit_text" />
+        app:layout_constraintTop_toBottomOf="@+id/kommentar" />
 
     <Button
         android:id="@+id/buttonBild"
@@ -159,6 +160,18 @@
         app:layout_constraintTop_toBottomOf="@+id/textBild"
         android:visibility="invisible"
         android:onClick="onBildClick"/>
+
+    <ImageView
+        android:id="@+id/imageViewPhoto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textBild"
+        />
 
     <RatingBar
         android:id="@+id/ratingBar"
@@ -175,12 +188,12 @@
         android:layout_width="249dp"
         android:layout_height="81dp"
         android:layout_marginTop="8dp"
+        android:onClick="onSendClick"
         android:text="@string/send"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ratingBar"
-        android:onClick="onSendClick"/>
+        app:layout_constraintTop_toBottomOf="@+id/ratingBar" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

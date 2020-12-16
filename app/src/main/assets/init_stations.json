@@ -1,0 +1,223 @@
+{
+  "stations":
+  [
+    {
+      "name" : "Körkarlens gata",
+      "image" : "",
+      "ratings" :
+      [
+
+      ],
+      "reports" :
+      [
+
+      ]
+    },
+    {
+      "name" : "Akkas Gata",
+      "image" : "",
+      "ratings" :
+      [
+
+      ],
+      "reports" :
+      [
+
+      ]
+    },
+    {
+      "name" : "Selma Lagerlöfs Torg",
+      "image" : "",
+      "ratings" :
+      [
+
+      ],
+      "reports" :
+      [
+
+      ]
+    },
+    {
+      "name" : "Sägengatan",
+      "image" : "",
+      "ratings" :
+      [
+
+      ],
+      "reports" :
+      [
+
+      ]
+    },
+    {
+      "name" : "Backa Kyrkogata",
+      "image" : "",
+      "ratings" :
+      [
+
+      ],
+      "reports" :
+      [
+
+      ]
+    },
+    {
+      "name" : "Björkrisvägen",
+      "image" : "",
+      "ratings" :
+      [
+
+      ],
+      "reports" :
+      [
+
+      ]
+    },
+    {
+      "name" : "Balladgatan",
+      "image" : "",
+      "ratings" :
+      [
+
+      ],
+      "reports" :
+      [
+
+      ]
+    },
+    {
+      "name" : "Brunnsbotorget",
+      "image" : "",
+      "ratings" :
+      [
+
+      ],
+      "reports" :
+      [
+
+      ]
+    },
+    {
+      "name" : "Hjalmar Brantingsplatsen",
+      "image" : "",
+      "ratings" :
+      [
+
+      ],
+      "reports" :
+      [
+
+      ]
+    },
+    {
+      "name" : "Lilla Bommen",
+      "image" : "",
+      "ratings" :
+      [
+
+      ],
+      "reports" :
+      [
+
+      ]
+    },
+    {
+      "name" : "Brunnsparken",
+      "image" : "",
+      "ratings" :
+      [
+
+      ],
+      "reports" :
+      [
+
+      ]
+    },
+    {
+      "name" : "Kungsportsplatsen",
+      "image" : "",
+      "ratings" :
+      [
+
+      ],
+      "reports" :
+      [
+
+      ]
+    },
+    {
+      "name" : "Valand",
+      "image" : "",
+      "ratings" :
+      [
+
+      ],
+      "reports" :
+      [
+
+      ]
+    },
+    {
+      "name" : "Götaplatsen",
+      "image" : "",
+      "ratings" :
+      [
+
+      ],
+      "reports" :
+      [
+
+      ]
+    },
+    {
+      "name" : "Vidblicksgatan",
+      "image" : "",
+      "ratings" :
+      [
+
+      ],
+      "reports" :
+      [
+
+      ]
+    },
+    {
+      "name" : "Spaldingsgatan",
+      "image" : "",
+      "ratings" :
+      [
+
+      ],
+      "reports" :
+      [
+
+      ]
+    },
+    {
+      "name" : "Bergsprängaregatan",
+      "image" : "",
+      "ratings" :
+      [
+
+      ],
+      "reports" :
+      [
+
+      ]
+    },
+    {
+      "name" : "Pilbågsgatan",
+      "image" : "",
+      "ratings" :
+      [
+
+      ],
+      "reports" :
+      [
+
+      ]
+    }
+
+  ]
+
+}
