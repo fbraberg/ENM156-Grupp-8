@@ -34,6 +34,7 @@ public class ReviewPageActivity extends AppCompatActivity {
     String currentPhotoPath;
     String comment;
     File photoFile;
+    String busStop;
     float rating;
 
     @Override
@@ -46,6 +47,7 @@ public class ReviewPageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         Intent intent = getIntent();
         setTitle(intent.getStringExtra("stop"));
+        busStop = intent.getStringExtra("stop");
         setContentView(R.layout.activity_reviewpage);
 
         rgKategori = findViewById(R.id.rgkategori);
@@ -116,13 +118,13 @@ public class ReviewPageActivity extends AppCompatActivity {
             rating = ratingBar.getRating();
             // Photo file path can be found in photoFile
 
-            Log.v("LEL", rgKategori.getCheckedRadioButtonId()+"");
+            Log.d("YOYO", busStop);
 
             if(imageTaken)
                 io.io.submitForm("Kungsportsplatsen", readCategory(), comment, ratingBar.getRating(), photoFile.getPath(), this);
             else
                 io.io.submitForm("Kungsportsplatsen", readCategory(), comment, ratingBar.getRating(), "", this);
-            
+
             imageTaken = false;
             // Send the user back to the map view
             Intent intent = new Intent(ReviewPageActivity.this, MapsActivity.class);
