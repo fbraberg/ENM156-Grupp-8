@@ -102,7 +102,7 @@ public class ReviewPageActivity extends AppCompatActivity {
         }
     }
 
-    public void onSendClick(View view) throws IOException {
+    public void onSendClick(View view) {
 
         // Check if the reviewer has given a star rating and taken an image
         if (ratingBar.getRating() < 0.5f) {
@@ -118,12 +118,12 @@ public class ReviewPageActivity extends AppCompatActivity {
             rating = ratingBar.getRating();
             // Photo file path can be found in photoFile
 
-            Log.d("YOYO", busStop);
+            Log.v("YOYO", busStop);
 
             if(imageTaken)
-                io.io.submitForm("Kungsportsplatsen", readCategory(), comment, ratingBar.getRating(), photoFile.getPath(), this);
+                io.io.submitForm(busStop, readCategory(), comment, ratingBar.getRating(), photoFile.getPath(), this);
             else
-                io.io.submitForm("Kungsportsplatsen", readCategory(), comment, ratingBar.getRating(), "", this);
+                io.io.submitForm(busStop, readCategory(), comment, ratingBar.getRating(), "", this);
 
             imageTaken = false;
             // Send the user back to the map view
@@ -150,18 +150,13 @@ public class ReviewPageActivity extends AppCompatActivity {
     }
 
     private String readCategory () {
-        switch (rgKategori.getCheckedRadioButtonId()) {
-            case 2131231001:
-                return "Omdöme";
-            case 2131231003:
-                return "Skadeanmälan";
-            case 2131231000:
-                return "Förslag";
-            case 2131231002:
-                return "Övrigt";
+        RadioGroup radioGroup = (RadioGroup) findViewById(R.id.rgkategori);
 
-        }
-        return null;
+        int radioButtonID = radioGroup.getCheckedRadioButtonId();
+
+        RadioButton radioButton = (RadioButton) radioGroup.findViewById(radioButtonID);
+
+        return (String) radioButton.getText();
     }
 
 }

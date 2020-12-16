@@ -18,7 +18,7 @@ public class IntroSplashActivity extends AppCompatActivity {
 
         // Wait 3 seconds, then move to About page
         new Handler(Looper.getMainLooper()).postDelayed(() -> {
-            Intent intent = new Intent(IntroSplashActivity.this, ReviewPageActivity.class);
+            Intent intent = new Intent(IntroSplashActivity.this, IntroAboutActivity.class);
             startActivity(intent);
             finish();
         }, 3000);

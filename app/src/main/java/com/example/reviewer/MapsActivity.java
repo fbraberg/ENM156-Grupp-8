@@ -17,6 +17,7 @@ import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
@@ -37,6 +38,9 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.GoogleMap.OnMyLocationButtonClickListener;
 
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -107,9 +111,11 @@ public class MapsActivity extends AppCompatActivity implements
 
                 mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(location, 12));
 
-                // TODO: Use bus stop data
+                float rating = 0f;
+                rating = io.io.getMeanRating(io.io.readStation(stopName, getApplicationContext()));
+
                 openCard(stopName,
-                        (float) 3.5,
+                        rating,
                         R.color.status_ok,
                         R.string.status_ok,
                         getResources().getString(R.string.status_description_ok),
@@ -155,8 +161,13 @@ public class MapsActivity extends AppCompatActivity implements
                 String stopName = marker.getTitle();
                 LatLng location = stopCoords.get(stopName);
                 mMap.animateCamera(CameraUpdateFactory.newLatLng(location));
+
+                float rating = 0f;
+                Log.v("HEHE", stopName);
+                rating = io.io.getMeanRating(io.io.readStation(stopName, getApplicationContext()));
+
                 openCard(stopName,
-                        (float) 3.5,
+                        rating,
                         R.color.status_ok,
                         R.string.status_ok,
                         getResources().getString(R.string.status_description_ok),
@@ -229,7 +240,6 @@ public class MapsActivity extends AppCompatActivity implements
 
     // Hard-coded coordinates
     public void busStations(){
-        LatLng centralstation= new LatLng(57.70898611081937, 11.972313501612282);
         // buss 18
         LatLng korkarlens = new LatLng(57.75776700181472, 11.987768767718672);
         LatLng akkasGata = new LatLng(57.75423547557376, 11.980694006368749);
@@ -253,7 +263,6 @@ public class MapsActivity extends AppCompatActivity implements
         rawStopCoords.add(valand);
         rawStopCoords.add(kungsPortsPlatsen);
         rawStopCoords.add(brunnsparken);
-        rawStopCoords.add(centralstation);
         rawStopCoords.add(korkarlens);
         rawStopCoords.add(akkasGata);
         rawStopCoords.add(selma);
