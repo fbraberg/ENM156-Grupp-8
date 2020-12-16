@@ -114,11 +114,19 @@ public class MapsActivity extends AppCompatActivity implements
                 float rating = 0f;
                 rating = io.io.getMeanRating(io.io.readStation(stopName, getApplicationContext()));
 
+                int statusColor = R.color.status_ok;
+                int statusIndicator = R.string.status_ok;
+                String statusDesc = getResources().getString(R.string.status_description_ok);
+                if (stopName.equals("Bergsprängaregatan")) {
+                    statusColor = R.color.status_problem;
+                    statusIndicator = R.string.status_problem;
+                    statusDesc = "Krossade glasrutor vid läge B pga sprängning av berg";
+                }
                 openCard(stopName,
                         rating,
-                        R.color.status_ok,
-                        R.string.status_ok,
-                        getResources().getString(R.string.status_description_ok),
+                        statusColor,
+                        statusIndicator,
+                        statusDesc,
                         R.drawable.test_bus_stop);
             }
         });
@@ -163,14 +171,21 @@ public class MapsActivity extends AppCompatActivity implements
                 mMap.animateCamera(CameraUpdateFactory.newLatLng(location));
 
                 float rating = 0f;
-                Log.v("HEHE", stopName);
                 rating = io.io.getMeanRating(io.io.readStation(stopName, getApplicationContext()));
-
+                
+                int statusColor = R.color.status_ok;
+                int statusIndicator = R.string.status_ok;
+                String statusDesc = getResources().getString(R.string.status_description_ok);
+                if (stopName.equals("Bergsprängaregatan")) {
+                    statusColor = R.color.status_problem;
+                    statusIndicator = R.string.status_problem;
+                    statusDesc = "Krossade glasrutor vid läge B pga sprängning av berg";
+                }
                 openCard(stopName,
                         rating,
-                        R.color.status_ok,
-                        R.string.status_ok,
-                        getResources().getString(R.string.status_description_ok),
+                        statusColor,
+                        statusIndicator,
+                        statusDesc,
                         R.drawable.test_bus_stop);
                 return true;
             }
