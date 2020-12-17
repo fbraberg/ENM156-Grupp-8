@@ -6,7 +6,6 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -39,7 +38,6 @@ public class ReviewPageActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        // TODO REMOVE!!!!
         File file = new File(this.getFilesDir(),io.io.FILE);
         if(!file.exists())
             io.io.initBackend(this);
@@ -78,7 +76,6 @@ public class ReviewPageActivity extends AppCompatActivity {
     }
 
     public void onBildClick(View view) {
-        Log.v("BILDCLICK", "yes");
         // Images are stored on the device under /storage/emulated/0/Android/data/com.example.reviewer/files/Pictures
         imageTaken = true;
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -92,7 +89,6 @@ public class ReviewPageActivity extends AppCompatActivity {
         imageViewPhoto.setImageBitmap(bitmap);
         try {
             photoFile = createImageFile();
-            Log.v("FILENAME: ", "" + photoFile);
             FileOutputStream out = new FileOutputStream(photoFile);
             bitmap.compress(Bitmap.CompressFormat.PNG, 100, out);
             // PNG is a lossless format, the compression factor (100) is ignored
@@ -117,8 +113,6 @@ public class ReviewPageActivity extends AppCompatActivity {
             // Store rating
             rating = ratingBar.getRating();
             // Photo file path can be found in photoFile
-
-            Log.v("YOYO", busStop);
 
             if(imageTaken)
                 io.io.submitForm(busStop, readCategory(), comment, ratingBar.getRating(), photoFile.getPath(), this);
@@ -151,11 +145,8 @@ public class ReviewPageActivity extends AppCompatActivity {
 
     private String readCategory () {
         RadioGroup radioGroup = (RadioGroup) findViewById(R.id.rgkategori);
-
         int radioButtonID = radioGroup.getCheckedRadioButtonId();
-
         RadioButton radioButton = (RadioButton) radioGroup.findViewById(radioButtonID);
-
         return (String) radioButton.getText();
     }
 

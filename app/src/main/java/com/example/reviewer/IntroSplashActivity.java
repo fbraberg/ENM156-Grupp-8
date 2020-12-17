@@ -7,8 +7,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 
-import java.util.concurrent.Executor;
-
 /* Displays app logo */
 public class IntroSplashActivity extends AppCompatActivity {
     @Override
