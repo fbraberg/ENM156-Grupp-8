@@ -1,5 +1,7 @@
 \documentclass{article}
+\usepackage[swedish]{babel}
 \usepackage[utf8]{inputenc}
+\usepackage{graphicx}
 \usepackage{verbatim}
 \usepackage{graphicx}
 \title{
@@ -39,22 +41,41 @@ För att rapporten ska var godkänd krävs att:
 
 \maketitle
 
+\begin{figure}[h]
+\centering
+\begin{minipage}{.47\textwidth}
+  \centering
+  \includegraphics[width=.92\linewidth]{documentation/images/Info_card.png}
+  \caption{Ett fönster med information om hållplatsen presenteras när en ikon väljs.}
+  \label{fig:infofonster}
+\end{minipage}%
+\hfill
+\begin{minipage}{.47\textwidth}
+  \centering
+  \includegraphics[width=.92\linewidth]{documentation/images/Feedback_screen.png}
+  \caption{Sida där användaren kan lämna feedback för en hållplats. \\}
+  \label{fig:feedbacksida}
+\end{minipage}
+\end{figure}
+
 \section*{Applikationen}
-\textit{Västtrafik Reviewer} är en app för att betygsätta och skaderapportera hållplatser runtom i Sverige. Appen presenterar en interaktiv karta över Sverige där användaren kan trycka på ikoner som representerar diverse hållplatser i landet. Ett tryck på någon ikon presenterar ett fönster med information och bild på hållplatsen, se figur \ref{[LÄGG TILL BILD]}. Från den sidan kan användaren trycka på en knapp för att lämna en rapport om hållplatsen. På den sidan, figur \ref{[LÄGG TILL BILD]}, får användaren fylla i olika fält. Dessa fält är:
+\textit{Västtrafik Reviewer} är en app för att betygsätta och skaderapportera hållplatser runtom i Sverige. Appen presenterar en interaktiv karta över Sverige där användaren kan trycka på ikoner som representerar diverse hållplatser i landet. Genom att trycka på en av dessa ikoner visas ett fönster med information och bild på hållplatsen, se figur \ref{fig:infofonster}. I fönstret kan användaren trycka på en knapp för att lämna en rapport om hållplatsen. På den sidan, figur \ref{fig:feedbacksida}, får användaren fylla i följande fält:
 \begin{description}
-\item[Kategori] som är vad för sorts rapport det är.
-\item[Kommentar] som är kommentaren som användaren vill ge för platsen.
-\item[Bild] som skickas om kategorin som är vald är \textit{Skadeanmälan}.
-\item[Stjärnor] för att ge ett betyg för hållplatsen.
+\item[Kategori] \textendash\ vad för sorts rapport det är.
+\item[Kommentar] \textendash\ kommentaren som användaren vill ge för platsen.
+\item[Bild] \textendash\ om den valda kategorin är \textit{Skadeanmälan} tas en sådan på plats.
+\item[Betyg] \textendash\ upp till fem stjärnor kan ges för hållplatsen.
 \end{description}
 
 \subsection*{Målgrupp}
-Den målgrupp som appen har som målgrupp är individer som reser med buss och tåg. 
+Appens målgrupp är individer som reser med buss och tåg. Då den erbjuder en organiserad informationskälla kring dessa individers åsikter och förslag för specifika hållplatser gynnar den även Västtrafik. 
 
 \subsection*{Avgränsningar}
 Det fanns många potentiella funktioner som hade kunnat implementerats och som även togs upp. Däremot, på grund av tidsbegränsningar, exkluderades dessa funktioner. Funktioner som exempelvis \textit{inställningar} hade varit önskevärt för att erbjuda användaren större applikationsanpassning. Saker som olika färgteman och alternativa språk hade ökat tillgänglighetsaspekten av appen avsevärt. Dessutom fanns tekniska besvär som orsakade avgränsningar.
 \\\\
 Det var tänkt att alla hållplatser skulle hämtas från en API. Men nyckeln för att få tillgång till hållplatserna fungerade aldrig. Därför skapades istället en backend i programmet som innehåller ett antal hårdkodade hållplatser. 
+
+
 
 \section*{Etik- och Hållbarhetsaspekter}
 \subsection*{Sociala aspekter}
