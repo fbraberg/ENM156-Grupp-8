@@ -109,16 +109,16 @@ Just nu är ett av våra behov att minska smittspridningen av pågående pandemi
 \subsubsection*{Tillägga alla busshållplatserna: }
 Den aktuella versionen av applikationen innehåller hållplatserna till linje 18. Nästa steg ska vara att tillägga resten av busshållplatserna.
 \subsubsection*{Integrera med togo applikation: }
-Ur användarens perspektiv anses Applikationen som komplettering tjänst till det huvud sakliga tjänst som är kollektivtrafik. Detta kan skapa svårighet att få stor antal användare. Lösning till detta kan vara att integrera vårt applikation med västtrafiks application"togo".
+Ur användarens perspektiv anses Applikationen som komplettering tjänst till det huvudsakliga tjänst som är kollektivtrafik. Detta kan skapa svårighet att få stor antal användare. Lösning till detta kan vara att integrera vår applikation med västtrafiks application"togo".
 \begin{figure}[htp]
     \centering
     \includegraphics[width=4cm]{västtrafik}
     \label{fig:Map}
 \end{figure}
 \\\\
-Hållplatserna presenteras som noder i togo applikation.När man tryckar på en node, så visar appen hållplats namn. Det kan görs istället är att visa en feedback sida när man tryckar på en hållplats. Detta kan fungera på samma sätt som användt i vårt app.
+Hållplatserna presenteras som noder i togo applikation.När man trycker på en node, så visar appen hållplats namn. Vad istället kan göras är att en feedback sida visas när man trycker på en hållplats. Detta kan fungera på samma sätt som använt i vårt app.
 \subsubsection*{Poäng system: }
-Att locka användaren att skriva en recension är på sig själv en utmaning, eftersom användaren inte får en direkt fördel genom att lämna in en utvärdering på en busshållplats. Genom att implementera ett poängsystem, kan vi uppmuntra användare att ladda ner och använda applikationen fortlöpande. Poängsystemet ger användaren fem poäng för en skadeanmäla som inkluderar en bild och kommentar, tre poäng för ett förslag och två poäng för ett omdöme. poäng som användaren samlar kan omvandlar till en reskassa. Detta kräver dock att ha en registrering system samt att ha en sida där man kan se sin aktuella samlade poänd och omvandla sina poäng till resekassa.
+Att locka användaren att skriva en recension är på sig själv en utmaning, eftersom användaren inte får en direkt fördel genom att lämna in en utvärdering på en busshållplats. Genom att implementera ett poängsystem, kan vi uppmuntra användare att ladda ner och använda applikationen fortlöpande. Poängsystemet ger användaren fem poäng för en skadeanmäla som inkluderar en bild och kommentar, tre poäng för ett förslag och två poäng för ett omdöme. poäng som användaren samlar kan omvandlar till en reskassa. Detta kräver dock att ha en registrering system samt att ha en sida där man kan se sin aktuella samlade poäng och omvandla sina poäng till reskassa.
 
 \section*{Egna lärdomar}
 Genom projektet har gruppens medlemmar fått ökad förståelse av applikationsutveckling genom användandet av Android Studio, samt erhållit erfarenhet i att samarbeta när all kommunikation sker digitalt. Fastän \textit{Västtrafik Reviewer} är en prototyp och inte är i behov av användardata i lika stor utsträckning som för en eventuell fullständig version, har hänsyn tagits till vilken användardata som behövs samt till vilken grad denna data görs tillgänglig för övriga användare. Att till exempel göra användarens kommentarer synliga för andra skulle från andra användares synvinkel kunna ge bättre insikt till varför en hållplats har ett visst snittbetyg, men kan å andra sidan kan det beroende på innehåll offentliggöra personlig information samt öppna upp möjligheten till att lättare sprida felinformation. Dessa nackdelar kan motverkas genom att alla kommentarer passeras genom ett filter innan de görs tillgängliga till allmänheten, men implementeringen av denna är en etisk och teknisk utmaning i sig och faller utanför ramen för detta projekt.
